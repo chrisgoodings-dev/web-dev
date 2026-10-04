@@ -1,3 +1,4 @@
+// See REFERENCES.md [J2] [J4] [J5]: request cancellation and URL/history state.
 import { searchWorks } from "./api.js";
 import { initialiseMenu } from "./nav.js";
 import { validateSearchForm } from "./validation.js";
@@ -32,6 +33,7 @@ form.addEventListener("submit", async (event) => {
     openAccess: data.get("openAccess") === "on"
   };
 
+  // [J2]: cancel a superseded fetch so an older response cannot replace newer results.
   activeSearch?.abort();
   const controller = new AbortController();
   activeSearch = controller;
@@ -143,7 +145,7 @@ function setStatus(message, isError = false) {
   status.classList.toggle("error", isError);
 }
 
-
+// [J4] [J5]: persist search controls in the query string without reloading the page.
 function updateSearchUrl(options) {
   const params = new URLSearchParams();
   params.set("q", options.query);
