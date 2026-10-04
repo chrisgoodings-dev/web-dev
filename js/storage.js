@@ -2,7 +2,8 @@ const STORAGE_KEY = "research-notes-reading-list";
 
 export function getReadingList() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? [];
+    const value = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return Array.isArray(value) ? value : [];
   } catch {
     return [];
   }
