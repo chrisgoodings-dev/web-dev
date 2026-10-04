@@ -6,7 +6,7 @@ Live site: https://chrisgoodings-dev.github.io/web-dev/
 
 ## Purpose
 
-Research Notes uses OpenAlex to search for papers. A user can open a paper, read its abstract, save it to a reading list, and keep evidence reported by the paper separate from their own interpretation.
+Research Notes uses OpenAlex to search for papers. A user can open a paper, read its abstract, compare key metadata with Crossref, save it to a reading list, and keep evidence reported by the paper separate from their own interpretation.
 
 ## Pages
 
@@ -20,14 +20,15 @@ The application uses plain HTML, one external CSS file, and ES-module JavaScript
 
 Saved papers and notes are stored only in the browser using `localStorage`.
 
-## API
+## APIs
 
-Only the OpenAlex Works API is used:
+Two independent scholarly metadata providers are used:
 
-- Search: `https://api.openalex.org/works`
-- Get one work: `https://api.openalex.org/works/{id}`
+- OpenAlex search: `https://api.openalex.org/works`
+- OpenAlex work detail: `https://api.openalex.org/works/{id}`
+- Crossref DOI metadata: `https://api.crossref.org/works/{doi}`
 
-Search terms, search scope, result count, sort order and the open-access option drive the search request.
+OpenAlex drives discovery and supplies the abstract. If the selected work has a DOI, Crossref is queried independently and the app compares the title, publication year and publication source. Crossref failure does not prevent the OpenAlex paper page from working.
 
 ## Accessibility
 
@@ -41,14 +42,13 @@ Source-level checks were also made for validation, loading, empty and error stat
 
 ## Known limitations
 
-OpenAlex availability, rate limits and missing metadata are outside the application's control. Data is stored only in the current browser and can be lost if local site data is cleared.
+OpenAlex and Crossref availability, rate limits and missing metadata are outside the application's control. Data is stored only in the current browser and can be lost if local site data is cleared.
 
 ## Future work
 
 The following are deliberately outside the submitted project scope:
 
 - accounts, a backend or database
-- additional APIs
 - tags, folders or advanced reading-list organisation
 - import, export or backup
 - dashboards, charts or matrices
