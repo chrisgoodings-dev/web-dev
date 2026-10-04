@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search papers | Research Notes</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/search.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-name" href="index.html">Research Notes</a>
+
+      <button
+        id="menu-toggle"
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav">
+        Menu
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation" hidden>
+        <ul>
+          <li><a href="index.html" aria-current="page">Search</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="intro" aria-labelledby="page-heading">
+      <p class="eyebrow">OpenAlex paper finder</p>
+      <h1 id="page-heading">Find research papers</h1>
+      <p>
+        Search OpenAlex for papers to review. You will be able to save papers and
+        keep evidence separate from your interpretation.
+      </p>
+    </section>
+
+    <section class="search-panel" aria-labelledby="search-heading">
+      <h2 id="search-heading">Search</h2>
+
+      <form id="search-form" novalidate>
+        <div class="field">
+          <label for="query">Keywords</label>
+          <input
+            id="query"
+            name="query"
+            type="search"
+            required
+            minlength="2"
+            maxlength="120"
+            autocomplete="off"
+            aria-describedby="query-hint query-error">
+          <p id="query-hint" class="hint">Enter at least two characters.</p>
+          <p id="query-error" class="form-error" hidden></p>
+        </div>
+
+        <fieldset>
+          <legend>Search within</legend>
+          <div class="choice-list">
+            <label>
+              <input type="radio" name="scope" value="title_abstract_keywords" checked>
+              Title, abstract and keywords
+            </label>
+            <label>
+              <input type="radio" name="scope" value="title">
+              Title only
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="search-grid">
+          <div class="field">
+            <label for="result-count">Number of results</label>
+            <input
+              id="result-count"
+              name="resultCount"
+              type="number"
+              min="5"
+              max="25"
+              step="5"
+              value="10">
+          </div>
+
+          <div class="field">
+            <label for="sort">Sort by</label>
+            <select id="sort" name="sort">
+              <option value="relevance_score:desc">Relevance</option>
+              <option value="publication_date:desc">Newest first</option>
+              <option value="cited_by_count:desc">Most cited</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="checkbox-row">
+          <input id="open-access" name="openAccess" type="checkbox">
+          Open access papers only
+        </label>
+
+        <button id="search-button" class="primary-button" type="submit">
+          Search papers
+        </button>
+      </form>
+    </section>
+
+    <section class="results-section" aria-labelledby="results-heading">
+      <div class="results-heading-row">
+        <h2 id="results-heading">Results</h2>
+        <p id="result-count-text"></p>
+      </div>
+
+      <p id="search-status" class="status" role="status" aria-live="polite">
+        Enter a search above to find papers.
+      </p>
+
+      <ul id="results-list" class="results-list" aria-label="Search results"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Paper metadata supplied by
+      <a href="https://openalex.org/">OpenAlex</a>.
+    </p>
+  </footer>
+</body>
+</html>
