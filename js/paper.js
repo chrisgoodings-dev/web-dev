@@ -16,9 +16,11 @@ const notesForm = document.querySelector("#notes-form");
 const evidence = document.querySelector("#evidence");
 const interpretation = document.querySelector("#interpretation");
 const notesStatus = document.querySelector("#notes-status");
+const backLink = document.querySelector("#back-to-search");
 let currentPaper = null;
 
 initialiseMenu();
+setBackLink();
 loadPaper();
 
 async function loadPaper() {
@@ -121,4 +123,10 @@ function updateListButton() {
 function showError(message) {
   status.textContent = message;
   status.classList.add("error");
+}
+
+
+function setBackLink() {
+  const returnUrl = params.get("return");
+  if (returnUrl?.startsWith("index.html?")) backLink.href = returnUrl;
 }
