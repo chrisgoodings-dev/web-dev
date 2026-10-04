@@ -20,6 +20,8 @@ The application uses plain HTML, one external CSS file, and ES-module JavaScript
 
 Saved papers and notes are stored only in the browser using `localStorage`.
 
+The interface also uses progressive enhancement with the native `<search>` element, CSS container queries, the Popover API and cross-document View Transitions. Unsupported browsers keep the core HTML, CSS and JavaScript workflow. Reduced-motion preferences disable page transition animation.
+
 ## APIs
 
 Two independent scholarly metadata providers are used:
