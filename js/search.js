@@ -11,6 +11,7 @@ const resultsList = document.querySelector("#results-list");
 const status = document.querySelector("#search-status");
 const countText = document.querySelector("#result-count-text");
 const searchButton = document.querySelector("#search-button");
+let activeSearch = null;
 
 initialiseMenu();
 
@@ -31,13 +32,18 @@ form.addEventListener("submit", async (event) => {
     openAccess: data.get("openAccess") === "on"
   };
 
+  activeSearch?.abort();
+  const controller = new AbortController();
+  activeSearch = controller;
+
   updateSearchUrl(options);
   setLoading(true);
   clearResults();
   setStatus("Searching OpenAlex...");
 
   try {
-    const response = await searchWorks(options);
+    const response = await searchWorks(options, controller.signal);
+    if (activeSearch !== controller) return;
     showResults(response.results ?? []);
     showResultCount(response.meta?.count ?? 0);
 
@@ -47,10 +53,14 @@ form.addEventListener("submit", async (event) => {
       setStatus(`Search complete. ${response.results.length} papers displayed.`);
     }
   } catch (error) {
+    if (error.name === "AbortError") return;
     console.error(error);
     setStatus("The search could not be completed. Please try again.", true);
   } finally {
-    setLoading(false);
+    if (activeSearch === controller) {
+      activeSearch = null;
+      setLoading(false);
+    }
   }
 });
 
