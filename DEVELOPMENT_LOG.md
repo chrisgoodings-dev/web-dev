@@ -35,3 +35,20 @@ Checks performed:
 - Checked current project size: 372 JavaScript lines across 6 JavaScript files, 667 source lines overall.
 - Attempted an automated Chromium browser check. The available Chromium instance is controlled by an organisation policy that blocks local, file, and external page navigation, so the live browser interaction test could not be completed in this environment.
 - The GitHub Pages URL is also not fetchable by the available web retrieval tool, so live-page rendering, CORS behaviour, 320 px reflow and note persistence on the deployed origin remain to be manually verified.
+
+## 2026-10-04 — Reading list page
+
+Built the third Assessment 2 page.
+
+Files added or changed:
+- `reading-list.html`: saved-paper list with unique page title, navigation and status region.
+- `js/reading-list.js`: renders saved papers, displays evidence/interpretation notes and removes papers.
+- `index.html` and `paper.html`: added Reading list navigation.
+- `styles.css`: added reading-note and secondary-button styling.
+
+Checks performed:
+- Confirmed JavaScript syntax for the new reading-list module with Node.
+- Confirmed GitHub Pages successfully deployed the final commit for this stage.
+- Checked current project size: 439 JavaScript lines across 7 JavaScript files, 783 source lines overall.
+- Attempted a Chromium browser check again. Navigation is blocked by the managed browser policy in this environment, including data, file, local and external URLs, so the rendered Reading list page could not be verified here.
+- A live reading-list interaction check, 320 px reflow check and axe-core scan therefore remain to be completed manually on the deployed site.
