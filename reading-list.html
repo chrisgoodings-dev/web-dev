@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading list | Research Notes</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/reading-list.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-name" href="index.html">Research Notes</a>
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Search</a></li>
+          <li><a href="reading-list.html" aria-current="page">Reading list</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="intro" aria-labelledby="page-heading">
+      <p class="eyebrow">Saved papers</p>
+      <h1 id="page-heading">Reading list</h1>
+      <p>Review saved papers and the notes you recorded for each one.</p>
+    </section>
+
+    <section aria-labelledby="saved-heading">
+      <div class="results-heading-row">
+        <h2 id="saved-heading">Saved papers</h2>
+        <p id="saved-count"></p>
+      </div>
+
+      <p id="reading-status" class="status" role="status" aria-live="polite"></p>
+      <ul id="reading-list" class="results-list" aria-label="Saved papers"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Paper metadata supplied by <a href="https://openalex.org/">OpenAlex</a>.</p>
+  </footer>
+</body>
+</html>
