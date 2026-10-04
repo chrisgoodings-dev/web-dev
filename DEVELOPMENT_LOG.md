@@ -69,3 +69,14 @@ Checks performed:
 - Reviewed the search-state and return-link logic after commit.
 - Current size is 482 JavaScript lines across 7 files and 827 application-source lines overall.
 - Live deployment status was checked through GitHub Pages. Browser interaction still requires manual verification on the deployed site.
+
+## 2026-10-04 — Final requirements and accessibility audit
+
+- Added a README with scope, API details, testing notes, known limitations and future work.
+- Checked all three pages have unique titles, one H1, a skip link and labelled main navigation.
+- Checked form controls, field-linked error references and IDs for missing or duplicate relationships.
+- Confirmed the required CSS selector types, custom properties, Grid and mobile-first media query are present.
+- Confirmed JavaScript covers menu interaction, validation, fetch, loading, empty and error states.
+- Strengthened the custom keyboard focus indicator with a two-tone focus treatment.
+- Core text colours were checked against their backgrounds and exceed the WCAG AA 4.5:1 contrast threshold.
+- axe-core could not be run in this environment and remains a pre-submission manual check.
