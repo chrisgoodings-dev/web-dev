@@ -10,7 +10,7 @@ body { margin: 0; line-height: 1.5; }
 a { color: var(--colour-primary); }
 a:hover { color: var(--colour-primary-dark); }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-  outline: 3px solid var(--colour-focus); outline-offset: 3px;
+  outline: 3px solid var(--colour-text); outline-offset: 2px; box-shadow: 0 0 0 5px var(--colour-focus);
 }
 .skip-link {
   position: absolute; left: 0.75rem; top: -5rem; z-index: 10;
