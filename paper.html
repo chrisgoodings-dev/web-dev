@@ -41,6 +41,11 @@
       <section aria-labelledby="sources-heading">
         <h2 id="sources-heading">Metadata sources</h2>
         <p>OpenAlex provides discovery metadata and the abstract. When a DOI is available, Crossref is checked independently against key publication details.</p>
+        <button class="secondary-button popover-button" type="button" popovertarget="source-help">Why compare sources?</button>
+        <div id="source-help" class="source-help" popover>
+          <h3>Why compare sources?</h3>
+          <p>Research databases can receive and process metadata differently. Comparing them makes those differences visible rather than treating one source as automatically authoritative.</p>
+        </div>
         <p id="metadata-status" class="status" role="status" aria-live="polite">Waiting for paper metadata.</p>
         <ul id="metadata-comparison" class="metadata-comparison" aria-label="OpenAlex and Crossref metadata comparison"></ul>
       </section>
