@@ -23,7 +23,7 @@
         Menu
       </button>
 
-      <nav id="site-nav" class="site-nav" aria-label="Main navigation" hidden>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
         <ul>
           <li><a href="index.html" aria-current="page">Search</a></li>
         </ul>
@@ -84,7 +84,10 @@
               min="5"
               max="25"
               step="5"
-              value="10">
+              value="10"
+              aria-describedby="result-count-hint result-count-error">
+            <p id="result-count-hint" class="hint">Choose 5 to 25, in steps of 5.</p>
+            <p id="result-count-error" class="form-error" hidden></p>
           </div>
 
           <div class="field">
