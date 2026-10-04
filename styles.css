@@ -1,3 +1,4 @@
+/* See REFERENCES.md [C1]-[C5] [A4]-[A5] for responsive, focus, contrast and transition techniques. */
 :root {
   --colour-bg: #f5f7f8; --colour-surface: #ffffff; --colour-text: #182126;
   --colour-muted: #53616a; --colour-border: #c6d0d5; --colour-control-border: #718087; --colour-primary: #075e66;
@@ -9,6 +10,7 @@
 body { margin: 0; line-height: 1.5; }
 a { color: var(--colour-primary); }
 a:hover { color: var(--colour-primary-dark); }
+/* [C1] [A4] [A5]: visible, high-contrast keyboard focus. */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
   outline: 3px solid var(--colour-text); outline-offset: 2px; box-shadow: 0 0 0 5px var(--colour-focus);
 }
@@ -98,6 +100,7 @@ input[aria-invalid="true"] { border-color: var(--colour-error); border-width: 2p
 .tag { padding: 0.2rem 0.5rem; border-radius: 999px; background: var(--colour-accent); font-size: 0.85rem; }
 .site-footer { padding-block: 1.5rem; border-top: 1px solid var(--colour-border); color: var(--colour-muted); font-size: 0.9rem; }
 
+/* [C2]: mobile-first enhancement at a wider viewport. */
 @media (min-width: 46rem) {
   .header-inner { display: flex; align-items: center; justify-content: space-between; }
   .menu-toggle { display: none; }
@@ -109,6 +112,7 @@ input[aria-invalid="true"] { border-color: var(--colour-error); border-width: 2p
 }
 
 
+/* [C3]: result cards respond to their container width. */
 @container (min-width: 42rem) {
   .results-section .result-card {
     display: grid;
@@ -130,6 +134,7 @@ input[aria-invalid="true"] { border-color: var(--colour-error); border-width: 2p
   }
 }
 
+/* [C4] [C5]: progressive MPA transitions with reduced-motion support below. */
 @view-transition {
   navigation: auto;
 }
