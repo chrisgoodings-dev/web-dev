@@ -21,3 +21,13 @@ export async function searchWorks(options) {
 
   return response.json();
 }
+
+export async function getWork(id) {
+  const response = await fetch(`${WORKS_ENDPOINT}/${encodeURIComponent(id)}`);
+
+  if (!response.ok) {
+    throw new Error(`OpenAlex returned HTTP ${response.status}`);
+  }
+
+  return response.json();
+}
