@@ -1,7 +1,7 @@
 const OPENALEX_WORKS = "https://api.openalex.org/works";
 const CROSSREF_WORKS = "https://api.crossref.org/works";
 
-export async function searchWorks(options) {
+export async function searchWorks(options, signal) {
   const url = new URL(OPENALEX_WORKS);
   const searchParameter =
     options.scope === "title" ? "search.title" : "search.title_abstract_keywords";
@@ -14,7 +14,7 @@ export async function searchWorks(options) {
     url.searchParams.set("filter", "open_access.is_oa:true");
   }
 
-  const response = await fetch(url);
+  const response = await fetch(url, { signal });
 
   if (!response.ok) {
     throw new Error(`OpenAlex returned HTTP ${response.status}`);
