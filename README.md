@@ -34,7 +34,7 @@ OpenAlex drives discovery and supplies the abstract. If the selected work has a 
 
 ## Accessibility
 
-The application includes semantic HTML, skip links, labelled form controls, field-linked validation messages, live status announcements, visible keyboard focus, keyboard-operable controls, mobile-first reflow and high-contrast text.
+The application includes semantic HTML, skip links with focusable targets, labelled form controls, field-linked validation messages, live status announcements, descriptive control names, visible keyboard focus, keyboard-operable controls, mobile-first reflow and high-contrast text and control boundaries. See `ACCESSIBILITY_TESTING.md` for the test record.
 
 ## Testing
 
