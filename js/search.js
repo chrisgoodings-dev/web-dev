@@ -13,6 +13,7 @@ const countText = document.querySelector("#result-count-text");
 const searchButton = document.querySelector("#search-button");
 
 initialiseMenu();
+restoreSearch();
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -31,6 +32,7 @@ form.addEventListener("submit", async (event) => {
     openAccess: data.get("openAccess") === "on"
   };
 
+  updateSearchUrl(options);
   setLoading(true);
   clearResults();
   setStatus("Searching OpenAlex...");
@@ -62,7 +64,8 @@ function showResults(works) {
     const id = work.id?.split("/").pop() ?? "";
 
     article.className = "result-card";
-    link.href = `paper.html?id=${encodeURIComponent(id)}`;
+    const returnUrl = `index.html${location.search}`;
+    link.href = `paper.html?id=${encodeURIComponent(id)}&return=${encodeURIComponent(returnUrl)}`;
     link.textContent = work.title || "Untitled work";
     heading.append(link);
 
@@ -129,4 +132,35 @@ function setLoading(isLoading) {
 function setStatus(message, isError = false) {
   status.textContent = message;
   status.classList.toggle("error", isError);
+}
+
+
+function updateSearchUrl(options) {
+  const params = new URLSearchParams();
+  params.set("q", options.query);
+  params.set("scope", options.scope);
+  params.set("count", options.resultCount);
+  params.set("sort", options.sort);
+  if (options.openAccess) params.set("oa", "1");
+  history.replaceState(null, "", `index.html?${params.toString()}`);
+}
+
+function restoreSearch() {
+  const params = new URLSearchParams(location.search);
+  const query = params.get("q");
+  if (!query) return;
+
+  queryInput.value = query;
+  form.elements.scope.value = params.get("scope") || "title_abstract_keywords";
+
+  const resultCount = Number(params.get("count"));
+  if ([5, 10, 15, 20, 25].includes(resultCount)) countInput.value = resultCount;
+
+  const sort = params.get("sort");
+  if ([...form.elements.sort.options].some((option) => option.value === sort)) {
+    form.elements.sort.value = sort;
+  }
+
+  form.elements.openAccess.checked = params.get("oa") === "1";
+  form.requestSubmit();
 }
