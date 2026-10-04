@@ -20,7 +20,7 @@ The application uses plain HTML, one external CSS file, and ES-module JavaScript
 
 Saved papers and notes are stored only in the browser using `localStorage`.
 
-The interface also uses progressive enhancement with the native `<search>` element, CSS container queries, the Popover API and cross-document View Transitions. Unsupported browsers keep the core HTML, CSS and JavaScript workflow. Reduced-motion preferences disable page transition animation.
+The interface also uses progressive enhancement with the native `<search>` element, CSS container queries, the Popover API and cross-document View Transitions. Search requests use `AbortController` so a superseded request cannot overwrite newer results. Unsupported browsers keep the core HTML, CSS and JavaScript workflow. Reduced-motion preferences disable page transition animation.
 
 ## APIs
 
