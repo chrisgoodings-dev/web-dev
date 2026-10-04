@@ -1,3 +1,4 @@
+// See REFERENCES.md [J3]: localStorage persists origin-scoped data across browser sessions.
 const STORAGE_KEY = "research-notes-reading-list";
 
 export function getReadingList() {
