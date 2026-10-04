@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper details | Research Notes</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/paper.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-name" href="index.html">Research Notes</a>
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul><li><a href="index.html">Search</a></li></ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <p><a href="index.html">← Back to search</a></p>
+    <p id="paper-status" class="status" role="status" aria-live="polite">Loading paper...</p>
+
+    <article id="paper-content" class="paper-detail" hidden>
+      <header>
+        <p class="eyebrow">Paper details</p>
+        <h1 id="paper-title"></h1>
+        <p id="paper-authors" class="result-meta"></p>
+        <ul id="paper-meta" class="paper-meta" aria-label="Paper metadata"></ul>
+        <p><a id="paper-link" href="" target="_blank" rel="noopener">View source page</a></p>
+        <button id="reading-list-button" class="primary-button" type="button">Save to reading list</button>
+      </header>
+
+      <section aria-labelledby="abstract-heading">
+        <h2 id="abstract-heading">Abstract</h2>
+        <p id="paper-abstract"></p>
+      </section>
+
+      <section class="notes-panel" aria-labelledby="notes-heading">
+        <h2 id="notes-heading">Notes</h2>
+        <p>Keep reported evidence separate from your own interpretation.</p>
+        <form id="notes-form">
+          <div class="field">
+            <label for="evidence">Evidence reported by the paper</label>
+            <textarea id="evidence" name="evidence" rows="7" maxlength="3000" aria-describedby="evidence-hint"></textarea>
+            <p id="evidence-hint" class="hint">Record findings, methods, results or claims from the paper.</p>
+          </div>
+          <div class="field">
+            <label for="interpretation">Your interpretation</label>
+            <textarea id="interpretation" name="interpretation" rows="7" maxlength="3000" aria-describedby="interpretation-hint"></textarea>
+            <p id="interpretation-hint" class="hint">Record what you think the evidence means or how it relates to your work.</p>
+          </div>
+          <button class="primary-button" type="submit">Save notes</button>
+        </form>
+        <p id="notes-status" class="save-status" role="status" aria-live="polite"></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>Paper metadata supplied by <a href="https://openalex.org/">OpenAlex</a>.</p>
+  </footer>
+</body>
+</html>
