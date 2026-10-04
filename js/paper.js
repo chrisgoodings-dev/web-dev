@@ -1,3 +1,4 @@
+// See REFERENCES.md [API3]-[API5] [DATA1]: provider metadata and OpenAlex abstract representation.
 import { getCrossrefWork, getWork } from "./api.js";
 import { initialiseMenu } from "./nav.js";
 import { getSavedPaper, removePaper, savePaper } from "./storage.js";
@@ -70,6 +71,7 @@ function renderPaper(paper) {
   updateListButton();
 }
 
+// [API5]: Crossref enrichment is optional, so failure does not block the OpenAlex view.
 async function loadCrossref(paper) {
   if (!paper.doi) {
     metadataStatus.textContent = "This paper has no DOI, so Crossref cannot be checked.";
@@ -144,6 +146,7 @@ function addMeta(label, value) {
   meta.append(item);
 }
 
+// [DATA1]: OpenAlex supplies abstract_inverted_index as word -> position(s); rebuild in position order.
 function rebuildAbstract(index) {
   if (!index) return "";
   const words = [];
