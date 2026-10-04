@@ -80,3 +80,19 @@ Checks performed:
 - Strengthened the custom keyboard focus indicator with a two-tone focus treatment.
 - Core text colours were checked against their backgrounds and exceed the WCAG AA 4.5:1 contrast threshold.
 - axe-core could not be run in this environment and remains a pre-submission manual check.
+
+## 2026-10-04 — Multi-provider metadata provenance
+
+Expanded the project scope from 20 to 30 hours and raised the agreed implementation limits to 1,300 application-source lines and 700 JavaScript lines.
+
+Changes made:
+- Added Crossref as a second API provider using DOI lookup.
+- Paper detail now compares title, publication year and publication source from OpenAlex and Crossref.
+- Added explicit Matches, Different and Not supplied states rather than inventing a numerical confidence score.
+- Kept Crossref enrichment non-blocking so the OpenAlex paper view still works if Crossref fails or the paper has no DOI.
+- Added a native Popover API explanation for metadata provenance, with an inline fallback when popovers are unsupported.
+- Added DOI display to the paper metadata and updated the README/API documentation.
+
+Verification:
+- Crossref documentation confirms public anonymous access and the `/works/{doi}` endpoint.
+- JavaScript syntax and live Crossref browser behaviour still require checking after GitHub Pages deploys this stage.
