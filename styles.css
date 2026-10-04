@@ -84,6 +84,13 @@ input[aria-invalid="true"] { border-color: var(--colour-error); border-width: 2p
 .comparison-state { padding: 0.15rem 0.45rem; border-radius: 999px; background: var(--colour-bg); font-size: 0.85rem; }
 .comparison-state.match { background: var(--colour-accent); }
 .comparison-state.different { border: 1px solid var(--colour-border); }
+.popover-button { display: none; }
+.source-help { max-width: 32rem; padding: 1rem; border: 1px solid var(--colour-border); border-radius: var(--radius); background: var(--colour-surface); color: var(--colour-text); }
+.source-help h3 { margin-top: 0; }
+@supports selector(:popover-open) {
+  .popover-button { display: inline-block; }
+  .source-help:popover-open { margin: auto; }
+}
 .result-card h3 { margin: 0 0 0.55rem; font-size: 1.15rem; }
 .result-card h3 a { text-decoration-thickness: 0.08em; text-underline-offset: 0.16em; }
 .result-meta, .result-source { margin: 0.35rem 0; color: var(--colour-muted); }
