@@ -1,4 +1,4 @@
-import { getWork } from "./api.js";
+import { getCrossrefWork, getWork } from "./api.js";
 import { initialiseMenu } from "./nav.js";
 import { getSavedPaper, removePaper, savePaper } from "./storage.js";
 
@@ -16,6 +16,8 @@ const notesForm = document.querySelector("#notes-form");
 const evidence = document.querySelector("#evidence");
 const interpretation = document.querySelector("#interpretation");
 const notesStatus = document.querySelector("#notes-status");
+const metadataStatus = document.querySelector("#metadata-status");
+const metadataList = document.querySelector("#metadata-comparison");
 const backLink = document.querySelector("#back-to-search");
 let currentPaper = null;
 
@@ -36,6 +38,7 @@ async function loadPaper() {
     loadSavedNotes();
     content.hidden = false;
     status.hidden = true;
+    loadCrossref(currentPaper);
   } catch (error) {
     console.error(error);
     showError("The paper could not be loaded. Please return to search and try again.");
@@ -45,6 +48,7 @@ async function loadPaper() {
 function normalisePaper(work) {
   return {
     id: work.id?.split("/").pop() ?? workId,
+    doi: work.doi?.replace(/^https?:\/\/doi\.org\//i, "") ?? null,
     title: work.title || "Untitled work",
     authors: (work.authorships ?? []).map((entry) => entry.author?.display_name).filter(Boolean),
     year: work.publication_year ?? null,
@@ -59,10 +63,79 @@ function renderPaper(paper) {
   title.textContent = paper.title;
   authors.textContent = paper.authors.length ? paper.authors.join(", ") : "Authors not listed";
   addMeta("Year", paper.year ?? "Unknown");
+  if (paper.doi) addMeta("DOI", paper.doi);
   addMeta("Source", paper.source);
   abstract.textContent = paper.abstract || "No abstract is available from OpenAlex.";
   sourceLink.href = paper.sourceUrl;
   updateListButton();
+}
+
+async function loadCrossref(paper) {
+  if (!paper.doi) {
+    metadataStatus.textContent = "This paper has no DOI, so Crossref cannot be checked.";
+    return;
+  }
+
+  metadataStatus.textContent = "Checking DOI metadata with Crossref...";
+
+  try {
+    const record = await getCrossrefWork(paper.doi);
+    const crossref = normaliseCrossref(record);
+    addComparison("Title", paper.title, crossref.title);
+    addComparison("Publication year", paper.year, crossref.year);
+    addComparison("Publication source", paper.source, crossref.source);
+    metadataStatus.textContent = "Crossref metadata loaded. Compare the sources below.";
+  } catch (error) {
+    console.warn(error);
+    metadataStatus.textContent = "Crossref metadata is unavailable. OpenAlex data remains available.";
+  }
+}
+
+function normaliseCrossref(record) {
+  const dateParts = record.published?.["date-parts"] ?? record.issued?.["date-parts"];
+
+  return {
+    title: record.title?.[0] || null,
+    year: dateParts?.[0]?.[0] ?? null,
+    source: record["container-title"]?.[0] || null
+  };
+}
+
+function addComparison(label, openAlexValue, crossrefValue) {
+  const item = document.createElement("li");
+  const heading = document.createElement("div");
+  const name = document.createElement("strong");
+  const state = document.createElement("span");
+  const openAlex = document.createElement("p");
+  const crossref = document.createElement("p");
+
+  heading.className = "comparison-heading";
+  name.textContent = label;
+  state.className = "comparison-state";
+
+  if (crossrefValue == null) {
+    state.textContent = "Not supplied";
+  } else if (valuesMatch(openAlexValue, crossrefValue)) {
+    state.textContent = "Matches";
+    state.classList.add("match");
+  } else {
+    state.textContent = "Different";
+    state.classList.add("different");
+  }
+
+  openAlex.textContent = `OpenAlex: ${openAlexValue ?? "Not supplied"}`;
+  crossref.textContent = `Crossref: ${crossrefValue ?? "Not supplied"}`;
+  heading.append(name, state);
+  item.append(heading, openAlex, crossref);
+  metadataList.append(item);
+}
+
+function valuesMatch(first, second) {
+  return normaliseValue(first) === normaliseValue(second);
+}
+
+function normaliseValue(value) {
+  return String(value ?? "").toLowerCase().replace(/\s+/g, " ").trim();
 }
 
 function addMeta(label, value) {
@@ -124,7 +197,6 @@ function showError(message) {
   status.textContent = message;
   status.classList.add("error");
 }
-
 
 function setBackLink() {
   const returnUrl = params.get("return");
