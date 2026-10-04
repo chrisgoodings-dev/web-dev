@@ -20,7 +20,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .site-header { background: var(--colour-surface); border-bottom: 1px solid var(--colour-border); }
 .header-inner, main, .site-footer { width: min(100% - 2rem, var(--content-width)); margin-inline: auto; }
 .header-inner { position: relative; padding-block: 0.9rem; }
-.site-name { display: inline-block; font-size: 1.15rem; font-weight: 700; text-decoration: none; }
+.site-name { display: inline-block; font-size: 1.15rem; font-weight: 700; text-decoration: none; view-transition-name: site-name; }
 .menu-toggle {
   float: right; padding: 0.5rem 0.75rem; border: 1px solid var(--colour-border);
   border-radius: var(--radius); background: var(--colour-surface); color: var(--colour-text);
@@ -31,7 +31,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .site-nav ul { margin: 0; padding: 0; list-style: none; }
 .site-nav a { display: block; padding: 0.6rem 0; text-decoration: none; }
 .site-nav a[aria-current="page"] { font-weight: 700; text-decoration: underline; text-underline-offset: 0.25rem; }
-main { padding-block: 2rem 3rem; }
+main { padding-block: 2rem 3rem; view-transition-name: page-content; }
 .intro { max-width: 46rem; margin-bottom: 1.75rem; }
 .eyebrow { margin: 0 0 0.25rem; color: var(--colour-primary); font-weight: 700; }
 h1, h2, h3 { line-height: 1.2; }
@@ -63,7 +63,7 @@ input[aria-invalid="true"] { border-color: var(--colour-error); border-width: 2p
 .primary-button:disabled { cursor: wait; opacity: 0.65; }
 .secondary-button { padding: 0.55rem 0.85rem; border: 1px solid var(--colour-border); border-radius: var(--radius); background: var(--colour-surface); color: var(--colour-text); font: inherit; cursor: pointer; }
 .secondary-button:hover { border-color: var(--colour-primary); }
-.results-section { margin-top: 2rem; }
+.results-section { margin-top: 2rem; container-type: inline-size; }
 .results-heading-row { display: flex; gap: 1rem; align-items: baseline; justify-content: space-between; }
 .results-heading-row p { margin: 0; color: var(--colour-muted); }
 .status { padding: 0.8rem; border-left: 4px solid var(--colour-primary); background: var(--colour-accent); }
@@ -106,4 +106,39 @@ input[aria-invalid="true"] { border-color: var(--colour-error); border-width: 2p
   .site-nav a { padding: 0.25rem 0; }
   .search-panel { padding: 1.5rem; }
   .search-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 1rem; }
+}
+
+
+@container (min-width: 42rem) {
+  .results-section .result-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    align-items: start;
+  }
+
+  .results-section .result-card h3,
+  .results-section .result-meta,
+  .results-section .result-source { grid-column: 1; }
+
+  .results-section .result-tags {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    justify-content: flex-end;
+    max-width: 14rem;
+    margin-top: 0;
+  }
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(site-name),
+  ::view-transition-new(site-name),
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) { animation: none; }
 }
