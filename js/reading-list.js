@@ -49,6 +49,7 @@ function createPaperItem(paper) {
   removeButton.className = "secondary-button";
   removeButton.type = "button";
   removeButton.textContent = "Remove";
+  removeButton.setAttribute("aria-label", `Remove ${paper.title || "untitled work"} from reading list`);
   removeButton.addEventListener("click", () => {
     removePaper(paper.id);
     renderReadingList(`Removed "${paper.title || "Untitled work"}" from your reading list.`);
