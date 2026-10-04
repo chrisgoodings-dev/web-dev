@@ -1,6 +1,6 @@
 :root {
   --colour-bg: #f5f7f8; --colour-surface: #ffffff; --colour-text: #182126;
-  --colour-muted: #53616a; --colour-border: #c6d0d5; --colour-primary: #075e66;
+  --colour-muted: #53616a; --colour-border: #c6d0d5; --colour-control-border: #718087; --colour-primary: #075e66;
   --colour-primary-dark: #04474d; --colour-accent: #d9eff1; --colour-error: #a11a1a;
   --colour-focus: #ffbf47; --radius: 0.5rem; --content-width: 68rem;
   font-family: Arial, Helvetica, sans-serif; color: var(--colour-text); background: var(--colour-bg);
@@ -22,7 +22,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .header-inner { position: relative; padding-block: 0.9rem; }
 .site-name { display: inline-block; font-size: 1.15rem; font-weight: 700; text-decoration: none; view-transition-name: site-name; }
 .menu-toggle {
-  float: right; padding: 0.5rem 0.75rem; border: 1px solid var(--colour-border);
+  float: right; padding: 0.5rem 0.75rem; border: 1px solid var(--colour-control-border);
   border-radius: var(--radius); background: var(--colour-surface); color: var(--colour-text);
   font: inherit; cursor: pointer;
 }
@@ -43,7 +43,7 @@ h2 { margin-top: 0; }
 label, legend { font-weight: 700; }
 input[type="search"], input[type="number"], select, textarea {
   display: block; width: 100%; margin-top: 0.35rem; padding: 0.7rem;
-  border: 1px solid var(--colour-border); border-radius: 0.35rem;
+  border: 1px solid var(--colour-control-border); border-radius: 0.35rem;
   background: #fff; color: var(--colour-text); font: inherit;
 }
 fieldset { margin: 0 0 1rem; padding: 0; border: 0; }
@@ -61,7 +61,7 @@ input[aria-invalid="true"] { border-color: var(--colour-error); border-width: 2p
 }
 #search-button:hover { background: var(--colour-primary-dark); }
 .primary-button:disabled { cursor: wait; opacity: 0.65; }
-.secondary-button { padding: 0.55rem 0.85rem; border: 1px solid var(--colour-border); border-radius: var(--radius); background: var(--colour-surface); color: var(--colour-text); font: inherit; cursor: pointer; }
+.secondary-button { padding: 0.55rem 0.85rem; border: 1px solid var(--colour-control-border); border-radius: var(--radius); background: var(--colour-surface); color: var(--colour-text); font: inherit; cursor: pointer; }
 .secondary-button:hover { border-color: var(--colour-primary); }
 .results-section { margin-top: 2rem; container-type: inline-size; }
 .results-heading-row { display: flex; gap: 1rem; align-items: baseline; justify-content: space-between; }
