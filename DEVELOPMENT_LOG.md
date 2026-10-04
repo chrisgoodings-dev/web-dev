@@ -96,3 +96,18 @@ Changes made:
 Verification:
 - Crossref documentation confirms public anonymous access and the `/works/{doi}` endpoint.
 - JavaScript syntax and live Crossref browser behaviour still require checking after GitHub Pages deploys this stage.
+
+## 2026-10-04 — Modern platform enhancements
+
+Added standards-based progressive enhancements without introducing a framework or build step.
+
+Changes made:
+- Replaced the generic search wrapper with the native `<search>` element to expose a semantic search landmark.
+- Added a container query so search-result cards respond to the width of their component area rather than only the viewport.
+- Added same-origin cross-document View Transitions for navigation between the three HTML pages.
+- Added `prefers-reduced-motion` handling so transition animation is disabled for users who request reduced motion.
+- Kept every enhancement progressive: browsers without these capabilities retain the normal multi-page navigation and mobile-first layout.
+
+Verification:
+- Source structure was reviewed after the change.
+- Live rendering and reduced-motion behaviour remain to be checked on the deployed GitHub Pages site.
