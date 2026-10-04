@@ -52,3 +52,20 @@ Checks performed:
 - Checked current project size: 439 JavaScript lines across 7 JavaScript files, 783 source lines overall.
 - Attempted a Chromium browser check again. Navigation is blocked by the managed browser policy in this environment, including data, file, local and external URLs, so the rendered Reading list page could not be verified here.
 - A live reading-list interaction check, 320 px reflow check and axe-core scan therefore remain to be completed manually on the deployed site.
+
+## 2026-10-04 — Search workflow refinement
+
+Changes made after live mobile testing:
+- Removed a literal `\\n` sequence that appeared in the mobile navigation.
+- Preserved the search state in the page URL, including query, search scope, result count, sort order and open-access filter.
+- Search-result links now carry a validated return URL to the paper page.
+- The paper page's Back to search link restores the previous search and automatically reruns it.
+
+Design decision:
+- Used persistent search rather than adding a second quick-save interaction to the results page. This fixes the workflow problem without duplicating reading-list behaviour or expanding the feature set.
+
+Checks performed:
+- Reviewed the generated HTML to confirm the stray navigation text is removed.
+- Reviewed the search-state and return-link logic after commit.
+- Current size is 482 JavaScript lines across 7 files and 827 application-source lines overall.
+- Live deployment status was checked through GitHub Pages. Browser interaction still requires manual verification on the deployed site.
