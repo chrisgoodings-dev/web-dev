@@ -9,7 +9,7 @@
 body { margin: 0; line-height: 1.5; }
 a { color: var(--colour-primary); }
 a:hover { color: var(--colour-primary-dark); }
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
   outline: 3px solid var(--colour-focus); outline-offset: 3px;
 }
 .skip-link {
@@ -41,7 +41,7 @@ h2 { margin-top: 0; }
 .search-panel { padding: 1rem; }
 .field { margin-bottom: 1rem; }
 label, legend { font-weight: 700; }
-input[type="search"], input[type="number"], select {
+input[type="search"], input[type="number"], select, textarea {
   display: block; width: 100%; margin-top: 0.35rem; padding: 0.7rem;
   border: 1px solid var(--colour-border); border-radius: 0.35rem;
   background: #fff; color: var(--colour-text); font: inherit;
@@ -68,6 +68,11 @@ input[aria-invalid="true"] { border-color: var(--colour-error); border-width: 2p
 .status.error { border-left-color: var(--colour-error); }
 .results-list { display: grid; gap: 1rem; margin: 1rem 0 0; padding: 0; list-style: none; }
 .result-card { padding: 1rem; }
+.paper-detail { display: grid; gap: 2rem; }
+.paper-detail > header, .paper-detail section { background: var(--colour-surface); border: 1px solid var(--colour-border); border-radius: var(--radius); padding: 1rem; }
+.paper-meta { margin: 1rem 0; padding-left: 1.25rem; }
+.notes-panel textarea { resize: vertical; min-height: 9rem; }
+.save-status { min-height: 1.5rem; font-weight: 700; }
 .result-card h3 { margin: 0 0 0.55rem; font-size: 1.15rem; }
 .result-card h3 a { text-decoration-thickness: 0.08em; text-underline-offset: 0.16em; }
 .result-meta, .result-source { margin: 0.35rem 0; color: var(--colour-muted); }
