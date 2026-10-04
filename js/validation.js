@@ -1,3 +1,4 @@
+// See REFERENCES.md [J6] [A2]: native constraint validation enhanced with accessible error descriptions.
 function showError(input, errorElement, message) {
   input.setAttribute("aria-invalid", "true");
   errorElement.textContent = message;
