@@ -156,3 +156,21 @@ Added a central `REFERENCES.md` and inline reference identifiers across all HTML
 - JavaScript comments cite Fetch, AbortController, URL/history state, localStorage, form validation and accessible disclosure behaviour.
 - API code cites OpenAlex search/single-work/open-access documentation, the OpenAlex abstract representation, and the Crossref DOI endpoint.
 - Authoritative provider, MDN and W3C/WAI documentation was preferred. No Stack Overflow code was copied into the project.
+
+## Development milestone map
+
+The repository history is grouped into the following logical milestones. These milestone names are intended for lightweight Git tags and point to the actual commits at which each stage was complete. They do not alter or backdate commit timestamps.
+
+| Milestone tag | Commit | Stage represented |
+| --- | --- | --- |
+| `stage-1-search` | `9116d55c9cf1` | Search page, OpenAlex search, validation, menu, responsive CSS and initial development log |
+| `stage-2-paper-detail` | `8b7947a0c733` | Paper detail, notes, localStorage, OpenAlex work lookup and DOI display |
+| `stage-3-reading-list` | `bc6198830d0b` | Reading list page, saved-note display, removal and three-page navigation |
+| `stage-4-workflow` | `c189dafd9eee` | Persistent search state, return-to-search workflow and mobile menu correction |
+| `stage-5-metadata-provenance` | `2ee7b6ca17bd` | Crossref integration, multi-provider metadata comparison and Popover explanation |
+| `stage-6-modern-platform` | `d55e867705d3` | Native search landmark, container queries, View Transitions and reduced-motion support |
+| `stage-7-request-resilience` | `217567839ed6` | AbortController request cancellation and stale-response protection |
+| `stage-8-accessibility` | `a4ea8ba29827` | Accessibility source fixes and formal accessibility-testing record |
+| `stage-9-references` | `a2ecb39c6ecc` | Inline source references and central REFERENCES.md catalogue |
+
+This milestone map is descriptive evidence of the development sequence. The original Git commit dates and times remain unchanged.
