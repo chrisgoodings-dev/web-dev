@@ -111,3 +111,16 @@ Changes made:
 Verification:
 - Source structure was reviewed after the change.
 - Live rendering and reduced-motion behaviour remain to be checked on the deployed GitHub Pages site.
+
+## 2026-10-04 — Request cancellation and stale-response protection
+
+Improved the asynchronous search workflow with the native AbortController API.
+
+Changes made:
+- Each new search cancels any earlier OpenAlex search that is still in flight.
+- The API helper now accepts an AbortSignal and passes it directly to fetch.
+- Results are only rendered when the response belongs to the currently active request.
+- AbortError is treated as an expected cancellation rather than a user-facing failure.
+- The loading state is only cleared by the request that currently owns it, preventing an older request from resetting a newer search.
+
+This removes a race condition where an older, slower response could otherwise replace results from a newer search.
