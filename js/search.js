@@ -13,7 +13,6 @@ const countText = document.querySelector("#result-count-text");
 const searchButton = document.querySelector("#search-button");
 
 initialiseMenu();
-restoreSearch();
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -164,3 +163,5 @@ function restoreSearch() {
   form.elements.openAccess.checked = params.get("oa") === "1";
   form.requestSubmit();
 }
+
+restoreSearch();
