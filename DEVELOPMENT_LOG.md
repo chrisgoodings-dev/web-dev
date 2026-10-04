@@ -135,3 +135,14 @@ Rechecked the three HTML pages after the modern-platform and request-cancellatio
 - ID-based form controls remain labelled.
 - Request cancellation uses AbortController, ignores expected AbortError failures and prevents stale responses from replacing newer results.
 - axe-core still requires a browser-based run on the deployed site before submission.
+
+## 2026-10-04 — Accessibility source fixes
+
+Changes made after WCAG-focused source review:
+- Added a darker control-border colour for inputs, selects, textareas, menu and secondary buttons so interactive boundaries are more distinct from white backgrounds.
+- Made each main-content skip-link target programmatically focusable with `tabindex="-1"`.
+- Added descriptive accessible names to reading-list Remove buttons using the paper title.
+- Changed the external paper link text to warn that it opens in a new tab.
+- Prepared a separate accessibility test record for axe, keyboard, reflow, zoom, reduced motion and screen-reader checks.
+
+These changes address source-level issues. Automated and assistive-technology test results must still be recorded separately rather than assumed.
