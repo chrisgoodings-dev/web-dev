@@ -1,6 +1,8 @@
+// See REFERENCES.md [J1] [API1]-[API6]: Fetch plus OpenAlex/Crossref endpoint behaviour.
 const OPENALEX_WORKS = "https://api.openalex.org/works";
 const CROSSREF_WORKS = "https://api.crossref.org/works";
 
+// [API1] [API2] [API6]: OpenAlex works search, scoped search and open-access filtering.
 export async function searchWorks(options, signal) {
   const url = new URL(OPENALEX_WORKS);
   const searchParameter =
@@ -23,6 +25,7 @@ export async function searchWorks(options, signal) {
   return response.json();
 }
 
+// [API3]: retrieve one OpenAlex work by its W-prefixed ID.
 export async function getWork(id) {
   const response = await fetch(`${OPENALEX_WORKS}/${encodeURIComponent(id)}`);
 
@@ -33,7 +36,7 @@ export async function getWork(id) {
   return response.json();
 }
 
-// Crossref REST API: https://www.crossref.org/documentation/retrieve-metadata/rest-api/
+// [API5]: Crossref /works/{doi} returns one DOI metadata record.
 export async function getCrossrefWork(doi) {
   const cleanDoi = doi.replace(/^https?:\/\/(dx\.)?doi\.org\//i, "");
   const doiPath = cleanDoi.split("/").map(encodeURIComponent).join("/");
