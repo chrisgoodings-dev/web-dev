@@ -59,6 +59,8 @@ The following are deliberately outside the submitted project scope:
 - analytics
 - an automated test framework
 
-## Development record
+## References and development record
+
+See `REFERENCES.md` for the documentation and standards cited inline from the source code.
 
 See `DEVELOPMENT_LOG.md` for a factual record of development and testing sessions.
