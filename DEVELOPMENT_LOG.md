@@ -124,3 +124,14 @@ Changes made:
 - The loading state is only cleared by the request that currently owns it, preventing an older request from resetting a newer search.
 
 This removes a race condition where an older, slower response could otherwise replace results from a newer search.
+
+## 2026-10-04 — Post-enhancement accessibility recheck
+
+Rechecked the three HTML pages after the modern-platform and request-cancellation changes.
+
+- Each page still has one H1, a skip link and labelled main navigation.
+- No duplicate IDs were found.
+- All aria-describedby references resolve to existing elements.
+- ID-based form controls remain labelled.
+- Request cancellation uses AbortController, ignores expected AbortError failures and prevents stale responses from replacing newer results.
+- axe-core still requires a browser-based run on the deployed site before submission.
