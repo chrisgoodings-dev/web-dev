@@ -1,3 +1,4 @@
+// See REFERENCES.md [A2] [J3]: accessible control names and local browser persistence.
 import { getReadingList, removePaper } from "./storage.js";
 import { initialiseMenu } from "./nav.js";
 
@@ -49,6 +50,7 @@ function createPaperItem(paper) {
   removeButton.className = "secondary-button";
   removeButton.type = "button";
   removeButton.textContent = "Remove";
+  // [A2]: distinguish repeated Remove controls with the associated paper title.
   removeButton.setAttribute("aria-label", `Remove ${paper.title || "untitled work"} from reading list`);
   removeButton.addEventListener("click", () => {
     removePaper(paper.id);
