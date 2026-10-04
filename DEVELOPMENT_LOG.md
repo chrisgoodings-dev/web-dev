@@ -146,3 +146,13 @@ Changes made after WCAG-focused source review:
 - Prepared a separate accessibility test record for axe, keyboard, reflow, zoom, reduced motion and screen-reader checks.
 
 These changes address source-level issues. Automated and assistive-technology test results must still be recorded separately rather than assumed.
+
+## 2026-10-04 — Source-reference pass
+
+Added a central `REFERENCES.md` and inline reference identifiers across all HTML, CSS and JavaScript source files.
+
+- HTML comments cite semantic structure, forms, skip navigation, accessible naming and the Popover API.
+- CSS comments cite focus visibility, non-text contrast, media queries, container queries, View Transitions and reduced-motion handling.
+- JavaScript comments cite Fetch, AbortController, URL/history state, localStorage, form validation and accessible disclosure behaviour.
+- API code cites OpenAlex search/single-work/open-access documentation, the OpenAlex abstract representation, and the Crossref DOI endpoint.
+- Authoritative provider, MDN and W3C/WAI documentation was preferred. No Stack Overflow code was copied into the project.
